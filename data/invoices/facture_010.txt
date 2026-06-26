@@ -1,0 +1,58 @@
+================================================================================
+                          TECHSOLUTIONS SARL
+             12 Rue de l'Innovation, 75011 Paris
+             Tél : +33 1 42 00 11 22
+             Email : contact@techsolutions.fr
+             SIRET : 823 456 789 00021 — TVA : FR82 823456789
+================================================================================
+
+FACTURE N° TS-2026-010                              Date : 20/03/2026
+                                                    Échéance : 19/04/2026
+
+--------------------------------------------------------------------------------
+CLIENT (ENTREPRISE)
+--------------------------------------------------------------------------------
+ÉCOLE PRIVÉE SAINT-EXUPÉRY
+12 Allée des Platanes
+06000 Nice
+Contact : M. Patrick Lemaire (directeur administratif)
+Email : p.lemaire@ecole-saintexupery.fr
+Tél : +33 4 93 22 33 44
+SIRET : 230 987 654 00051
+
+--------------------------------------------------------------------------------
+OBJET : Renouvellement parc informatique et infrastructure réseau
+--------------------------------------------------------------------------------
+
+| Description                              | Qté  | PU HT (€) | Total HT (€) |
+|------------------------------------------|------|-----------|--------------|
+| PC portables élèves (Chromebook)         | 30   |   280,00  |    8 400,00  |
+| PC fixes enseignants                     |  8   |   650,00  |    5 200,00  |
+| Switch réseau 48 ports                   |  2   |   450,00  |      900,00  |
+| Borne Wi-Fi salles de classe (10)        | 10   |   180,00  |    1 800,00  |
+| Serveur NAS pédagogique (16 To)          |  1   | 1 800,00  |    1 800,00  |
+| Installation et câblage réseau           |  3j  |   700,00  |    2 100,00  |
+| Configuration et déploiement MDM         |  1   |   800,00  |      800,00  |
+| Formation équipe pédagogique (10 pers.)  | 10   |    80,00  |      800,00  |
+| Garantie matériel étendue — 3 ans        |  1   |   900,00  |      900,00  |
+|------------------------------------------|------|-----------|--------------|
+| TOTAL HT                                 |                    22 700,00  |
+| TVA 20%                                  |                     4 540,00  |
+| TOTAL TTC                                |                    27 240,00  |
+
+Mode de paiement : Virement bancaire
+IBAN : FR76 3000 6000 0112 3456 7890 189
+Référence : TS-2026-010 / BON DE COMMANDE : BC-ESE-2026-002
+
+Modalités : Paiement en 3 fois sans frais
+  - Acompte 33% : 8 988,00 € TTC — reçu le 28/02/2026
+  - 2e versement 33% : 8 988,00 € TTC — échéance 19/04/2026
+  - Solde 34% : 9 264,00 € TTC — échéance 19/05/2026
+
+Note : Matériel conforme aux spécifications du marché public éducation.
+Bon de livraison n° BL-2026-0098 joint.
+
+--------------------------------------------------------------------------------
+Conditions générales : Paiement à 30 jours. Pénalités de retard : 3x taux légal.
+Indemnité forfaitaire de recouvrement : 40 €.
+================================================================================

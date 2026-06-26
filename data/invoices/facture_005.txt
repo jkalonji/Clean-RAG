@@ -1,0 +1,46 @@
+================================================================================
+                          TECHSOLUTIONS SARL
+             12 Rue de l'Innovation, 75011 Paris
+             Tél : +33 1 42 00 11 22
+             Email : contact@techsolutions.fr
+             SIRET : 823 456 789 00021 — TVA : FR82 823456789
+================================================================================
+
+FACTURE N° TS-2026-005                              Date : 03/02/2026
+                                                    Échéance : 03/03/2026
+
+--------------------------------------------------------------------------------
+CLIENT
+--------------------------------------------------------------------------------
+M. Karim Benzara
+17 Rue Pasteur
+67000 Strasbourg
+Email : karim.benzara@gmail.com
+Tél : +33 7 88 99 00 11
+
+--------------------------------------------------------------------------------
+OBJET : Formation informatique — bureautique et cybersécurité personnelle
+--------------------------------------------------------------------------------
+
+| Description                              | Qté  | PU HT (€) | Total HT (€) |
+|------------------------------------------|------|-----------|--------------|
+| Formation Pack Office 365 (Excel, Word)  |  4h  |    70,00  |      280,00  |
+| Initiation à la cybersécurité perso.     |  2h  |    70,00  |      140,00  |
+| Configuration gestionnaire de mots passe |  1   |    50,00  |       50,00  |
+| Mise en place authentification 2FA       |  1   |    30,00  |       30,00  |
+| Support de cours personnalisé (PDF)      |  1   |    20,00  |       20,00  |
+|------------------------------------------|------|-----------|--------------|
+| TOTAL HT                                 |                       520,00  |
+| TVA 20%                                  |                       104,00  |
+| TOTAL TTC                                |                       624,00  |
+
+Mode de paiement : Virement bancaire
+IBAN : FR76 3000 6000 0112 3456 7890 189
+Référence à indiquer : TS-2026-005
+
+Note : Formation effectuée en 2 sessions de 3h au domicile du client.
+Attestation de formation disponible sur demande.
+
+--------------------------------------------------------------------------------
+Conditions générales : Paiement à 30 jours. Pénalités de retard : 3x taux légal.
+================================================================================

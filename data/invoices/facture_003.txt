@@ -1,0 +1,44 @@
+================================================================================
+                          TECHSOLUTIONS SARL
+             12 Rue de l'Innovation, 75011 Paris
+             Tél : +33 1 42 00 11 22
+             Email : contact@techsolutions.fr
+             SIRET : 823 456 789 00021 — TVA : FR82 823456789
+================================================================================
+
+FACTURE N° TS-2026-003                              Date : 18/01/2026
+                                                    Échéance : 18/02/2026
+
+--------------------------------------------------------------------------------
+CLIENT
+--------------------------------------------------------------------------------
+Mme Sarah Nguyen
+22 Boulevard Voltaire
+75011 Paris
+Email : sarah.nguyen@hotmail.com
+Tél : +33 7 45 23 67 89
+
+--------------------------------------------------------------------------------
+OBJET : Configuration réseau domestique et installation box fibre
+--------------------------------------------------------------------------------
+
+| Description                              | Qté  | PU HT (€) | Total HT (€) |
+|------------------------------------------|------|-----------|--------------|
+| Installation et config. routeur Wi-Fi 6  |  1   |   120,00  |      120,00  |
+| Extension réseau maillé (mesh) — 2 nœuds |  2   |    80,00  |      160,00  |
+| Sécurisation réseau (pare-feu, WPA3)     |  1   |    60,00  |       60,00  |
+| Connexion NAS et partage de fichiers     |  1   |    90,00  |       90,00  |
+| Test de débit et optimisation            |  1   |    40,00  |       40,00  |
+| Déplacement (zone Paris)                 |  1   |    15,00  |       15,00  |
+|------------------------------------------|------|-----------|--------------|
+| TOTAL HT                                 |                       485,00  |
+| TVA 20%                                  |                        97,00  |
+| TOTAL TTC                                |                       582,00  |
+
+Mode de paiement : Virement bancaire
+IBAN : FR76 3000 6000 0112 3456 7890 189
+Référence à indiquer : TS-2026-003
+
+--------------------------------------------------------------------------------
+Conditions générales : Paiement à 30 jours. Pénalités de retard : 3x taux légal.
+================================================================================

@@ -1,0 +1,45 @@
+================================================================================
+                          TECHSOLUTIONS SARL
+             12 Rue de l'Innovation, 75011 Paris
+             Tél : +33 1 42 00 11 22
+             Email : contact@techsolutions.fr
+             SIRET : 823 456 789 00021 — TVA : FR82 823456789
+================================================================================
+
+FACTURE N° TS-2026-002                              Date : 12/01/2026
+                                                    Échéance : 12/02/2026
+
+--------------------------------------------------------------------------------
+CLIENT
+--------------------------------------------------------------------------------
+Mme Isabelle Morand
+8 Rue du Château d'Eau
+13008 Marseille
+Email : isabelle.morand@orange.fr
+Tél : +33 6 98 76 54 32
+
+--------------------------------------------------------------------------------
+OBJET : Création et mise en ligne d'un site web personnel (portfolio photographe)
+--------------------------------------------------------------------------------
+
+| Description                              | Qté  | PU HT (€) | Total HT (€) |
+|------------------------------------------|------|-----------|--------------|
+| Conception maquette graphique (3 pages)  |  1   |   250,00  |      250,00  |
+| Développement site WordPress             |  1   |   400,00  |      400,00  |
+| Intégration galerie photos (50 photos)   |  1   |   150,00  |      150,00  |
+| Formulaire de contact sécurisé           |  1   |    80,00  |       80,00  |
+| Hébergement + nom de domaine (1 an)      |  1   |   120,00  |      120,00  |
+| Formation utilisation CMS (2h)           |  2   |    60,00  |      120,00  |
+|------------------------------------------|------|-----------|--------------|
+| TOTAL HT                                 |                     1 120,00  |
+| TVA 20%                                  |                       224,00  |
+| TOTAL TTC                                |                     1 344,00  |
+
+Mode de paiement : Carte bancaire (lien de paiement envoyé par email)
+Référence : TS-2026-002
+
+Note : Inclus 3 mois de support technique offerts après la mise en ligne.
+
+--------------------------------------------------------------------------------
+Conditions générales : Paiement à 30 jours. Pénalités de retard : 3x taux légal.
+================================================================================

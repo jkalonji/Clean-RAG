@@ -1,0 +1,50 @@
+================================================================================
+                          TECHSOLUTIONS SARL
+             12 Rue de l'Innovation, 75011 Paris
+             Tél : +33 1 42 00 11 22
+             Email : contact@techsolutions.fr
+             SIRET : 823 456 789 00021 — TVA : FR82 823456789
+================================================================================
+
+FACTURE N° TS-2026-007                              Date : 17/02/2026
+                                                    Échéance : 19/03/2026
+
+--------------------------------------------------------------------------------
+CLIENT (ENTREPRISE)
+--------------------------------------------------------------------------------
+CABINET MÉDICAL DES TROIS FONTAINES
+Dr. Marc Rousseau & Associés
+6 Place de la République
+59000 Lille
+Contact : Mme Julie Petit (secrétaire médicale)
+Email : cabinet.troisfontaines@medecin-nord.fr
+Tél : +33 3 20 44 55 66
+SIRET : 501 234 567 00018
+
+--------------------------------------------------------------------------------
+OBJET : Mise en conformité RGPD et sécurisation des données médicales
+--------------------------------------------------------------------------------
+
+| Description                              | Qté  | PU HT (€) | Total HT (€) |
+|------------------------------------------|------|-----------|--------------|
+| Audit de sécurité des systèmes (2 jours) |  2j  |   800,00  |    1 600,00  |
+| Chiffrement des bases de données patien. |  1   | 1 200,00  |    1 200,00  |
+| Mise en place VPN sécurisé inter-sites   |  1   |   600,00  |      600,00  |
+| Formation RGPD équipe (3 personnes, 3h)  |  3   |    80,00  |      240,00  |
+| Rédaction politique de confidentialité   |  1   |   350,00  |      350,00  |
+| Installation antivirus pro (3 licences)  |  3   |    60,00  |      180,00  |
+|------------------------------------------|------|-----------|--------------|
+| TOTAL HT                                 |                     4 170,00  |
+| TVA 20%                                  |                       834,00  |
+| TOTAL TTC                                |                     5 004,00  |
+
+Mode de paiement : Virement bancaire
+IBAN : FR76 3000 6000 0112 3456 7890 189
+Référence : TS-2026-007 / BON DE COMMANDE : BC-MEDTF-2026-003
+
+Note : Attestation de conformité RGPD remise à l'issue de la prestation.
+
+--------------------------------------------------------------------------------
+Conditions générales : Paiement à 30 jours. Pénalités de retard : 3x taux légal.
+Indemnité forfaitaire de recouvrement : 40 €.
+================================================================================

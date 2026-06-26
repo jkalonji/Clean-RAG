@@ -1,0 +1,12 @@
+# Vectorstore généré localement (recréé au premier lancement)
+data/chroma_db/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+
+# Environnement
+.env

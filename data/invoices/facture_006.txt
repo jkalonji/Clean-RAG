@@ -1,0 +1,49 @@
+================================================================================
+                          TECHSOLUTIONS SARL
+             12 Rue de l'Innovation, 75011 Paris
+             Tél : +33 1 42 00 11 22
+             Email : contact@techsolutions.fr
+             SIRET : 823 456 789 00021 — TVA : FR82 823456789
+================================================================================
+
+FACTURE N° TS-2026-006                              Date : 10/02/2026
+                                                    Échéance : 12/03/2026
+
+--------------------------------------------------------------------------------
+CLIENT (ENTREPRISE)
+--------------------------------------------------------------------------------
+ARTIPLEX SAS
+32 Quai de la Loire
+44000 Nantes
+Contact : Mme Claire Fontaine (DSI)
+Email : c.fontaine@artiplex.fr
+Tél : +33 2 40 55 66 77
+SIRET : 412 789 654 00034
+
+--------------------------------------------------------------------------------
+OBJET : Infogérance mensuelle — Janvier 2026
+--------------------------------------------------------------------------------
+
+| Description                              | Qté  | PU HT (€) | Total HT (€) |
+|------------------------------------------|------|-----------|--------------|
+| Supervision infrastructure (20 serveurs) |  1   | 1 800,00  |    1 800,00  |
+| Maintenance préventive postes de travail | 35   |    15,00  |      525,00  |
+| Gestion des sauvegardes quotidiennes     |  1   |   400,00  |      400,00  |
+| Gestion des mises à jour de sécurité     |  1   |   300,00  |      300,00  |
+| Astreinte 24/7 (support critique)        |  1   |   600,00  |      600,00  |
+| Rapport mensuel d'activité               |  1   |   150,00  |      150,00  |
+|------------------------------------------|------|-----------|--------------|
+| TOTAL HT                                 |                     3 775,00  |
+| TVA 20%                                  |                       755,00  |
+| TOTAL TTC                                |                     4 530,00  |
+
+Mode de paiement : Virement bancaire (prélèvement automatique)
+IBAN : FR76 3000 6000 0112 3456 7890 189
+Référence : TS-2026-006 / BON DE COMMANDE ARTIPLEX : BC-2025-089
+
+Contrat d'infogérance référence : CTR-ARTIPLEX-2024-01 (reconduit tacitement)
+
+--------------------------------------------------------------------------------
+Conditions générales : Paiement à 30 jours. Pénalités de retard : 3x taux légal.
+Indemnité forfaitaire de recouvrement : 40 €.
+================================================================================

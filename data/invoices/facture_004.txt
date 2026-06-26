@@ -1,0 +1,46 @@
+================================================================================
+                          TECHSOLUTIONS SARL
+             12 Rue de l'Innovation, 75011 Paris
+             Tél : +33 1 42 00 11 22
+             Email : contact@techsolutions.fr
+             SIRET : 823 456 789 00021 — TVA : FR82 823456789
+================================================================================
+
+FACTURE N° TS-2026-004                              Date : 25/01/2026
+                                                    Échéance : 25/02/2026
+
+--------------------------------------------------------------------------------
+CLIENT
+--------------------------------------------------------------------------------
+M. Pierre Durand
+5 Impasse des Roses
+31000 Toulouse
+Email : pierre.durand@sfr.fr
+Tél : +33 6 55 44 33 22
+
+--------------------------------------------------------------------------------
+OBJET : Récupération de données et sauvegarde cloud
+--------------------------------------------------------------------------------
+
+| Description                              | Qté  | PU HT (€) | Total HT (€) |
+|------------------------------------------|------|-----------|--------------|
+| Récupération données disque défaillant   |  1   |   350,00  |      350,00  |
+| Transfert données vers nouveau disque    |  1   |    70,00  |       70,00  |
+| Configuration sauvegarde cloud (10 Go)   |  1   |    50,00  |       50,00  |
+| Abonnement sauvegarde cloud — 1 an       |  1   |    96,00  |       96,00  |
+| Déplacement (zone Toulouse)              |  1   |    25,00  |       25,00  |
+|------------------------------------------|------|-----------|--------------|
+| TOTAL HT                                 |                       591,00  |
+| TVA 20%                                  |                       118,20  |
+| TOTAL TTC                                |                       709,20  |
+
+Mode de paiement : Chèque à l'ordre de TechSolutions SARL
+Référence : TS-2026-004
+
+Note importante : Les données récupérées ont été copiées sur un disque externe
+fourni par le client. La réussite de la récupération était partielle (95% des
+fichiers restaurés). Un rapport détaillé est joint à cette facture.
+
+--------------------------------------------------------------------------------
+Conditions générales : Paiement à 30 jours. Pénalités de retard : 3x taux légal.
+================================================================================

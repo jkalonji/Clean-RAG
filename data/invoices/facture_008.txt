@@ -1,0 +1,51 @@
+================================================================================
+                          TECHSOLUTIONS SARL
+             12 Rue de l'Innovation, 75011 Paris
+             Tél : +33 1 42 00 11 22
+             Email : contact@techsolutions.fr
+             SIRET : 823 456 789 00021 — TVA : FR82 823456789
+================================================================================
+
+FACTURE N° TS-2026-008                              Date : 28/02/2026
+                                                    Échéance : 30/03/2026
+
+--------------------------------------------------------------------------------
+CLIENT (ENTREPRISE)
+--------------------------------------------------------------------------------
+BOULANGERIE DUPAIN & FILS SARL
+18 Rue du Four
+33000 Bordeaux
+Contact : M. Gérard Dupain (gérant)
+Email : g.dupain@boulangerie-dupain.fr
+Tél : +33 5 56 78 90 12
+SIRET : 334 567 890 00042
+
+--------------------------------------------------------------------------------
+OBJET : Déploiement système de caisse et gestion de stock
+--------------------------------------------------------------------------------
+
+| Description                              | Qté  | PU HT (€) | Total HT (€) |
+|------------------------------------------|------|-----------|--------------|
+| Installation logiciel caisse (3 postes)  |  3   |   200,00  |      600,00  |
+| Configuration imprimantes tickets (3)    |  3   |    80,00  |      240,00  |
+| Paramétrage catalogue produits (200 art) |  1   |   300,00  |      300,00  |
+| Intégration module gestion stocks        |  1   |   450,00  |      450,00  |
+| Migration données ancien système         |  1   |   250,00  |      250,00  |
+| Formation personnel (5 personnes, 4h)    |  5   |    60,00  |      300,00  |
+| Maintenance corrective — 6 mois          |  1   |   360,00  |      360,00  |
+|------------------------------------------|------|-----------|--------------|
+| TOTAL HT                                 |                     2 500,00  |
+| TVA 20%                                  |                       500,00  |
+| TOTAL TTC                                |                     3 000,00  |
+
+Mode de paiement : Virement bancaire
+IBAN : FR76 3000 6000 0112 3456 7890 189
+Référence : TS-2026-008
+
+Modalités : 50% à la commande (1 500,00 € TTC reçus le 15/01/2026),
+            50% à la mise en service — solde : 1 500,00 € TTC
+
+--------------------------------------------------------------------------------
+Conditions générales : Paiement à 30 jours. Pénalités de retard : 3x taux légal.
+Indemnité forfaitaire de recouvrement : 40 €.
+================================================================================

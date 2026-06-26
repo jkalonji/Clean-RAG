@@ -1,0 +1,44 @@
+================================================================================
+                          TECHSOLUTIONS SARL
+             12 Rue de l'Innovation, 75011 Paris
+             Tél : +33 1 42 00 11 22
+             Email : contact@techsolutions.fr
+             SIRET : 823 456 789 00021 — TVA : FR82 823456789
+================================================================================
+
+FACTURE N° TS-2026-001                              Date : 05/01/2026
+                                                    Échéance : 05/02/2026
+
+--------------------------------------------------------------------------------
+CLIENT
+--------------------------------------------------------------------------------
+M. Thomas Lefebvre
+14 Avenue des Lilas
+69003 Lyon
+Email : thomas.lefebvre@gmail.com
+Tél : +33 6 12 34 56 78
+
+--------------------------------------------------------------------------------
+OBJET : Assistance et dépannage informatique à domicile
+--------------------------------------------------------------------------------
+
+| Description                              | Qté  | PU HT (€) | Total HT (€) |
+|------------------------------------------|------|-----------|--------------|
+| Diagnostic et nettoyage PC               |  1   |    80,00  |       80,00  |
+| Suppression virus et malwares            |  1   |    60,00  |       60,00  |
+| Réinstallation Windows 11                |  1   |    90,00  |       90,00  |
+| Configuration sauvegardes automatiques   |  1   |    40,00  |       40,00  |
+| Déplacement (zone Lyon)                  |  1   |    20,00  |       20,00  |
+|------------------------------------------|------|-----------|--------------|
+| TOTAL HT                                 |                       290,00  |
+| TVA 20%                                  |                        58,00  |
+| TOTAL TTC                                |                       348,00  |
+
+Mode de paiement : Virement bancaire
+IBAN : FR76 3000 6000 0112 3456 7890 189
+Référence à indiquer : TS-2026-001
+
+--------------------------------------------------------------------------------
+Conditions générales : Paiement à 30 jours. Pénalités de retard : 3x taux légal.
+Prestation garantie 30 jours contre tout défaut d'exécution.
+================================================================================
