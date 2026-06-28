@@ -26,7 +26,8 @@ from langchain_core.output_parsers import StrOutputParser
 # Configuration
 # ---------------------------------------------------------------------------
 OLLAMA_BASE_URL    = "http://localhost:11434/v1"
-OLLAMA_MODEL       = "gemma4:latest"   # reduce + rag local
+#OLLAMA_MODEL       = "gemma4:latest"   # reduce + rag local
+OLLAMA_MODEL       = "gemma3:4b"
 CLASSIFIER_MODEL   = "gemma3:4b"       # routing LOCAL/GLOBAL
 MAP_MODEL          = "gemma3:4b"       # extraction factuelle pendant le map
 EMBEDDING_MODEL    = "sentence-transformers/all-MiniLM-L6-v2"
@@ -173,15 +174,19 @@ Réponse (courte, factuelle) :"""
 REDUCE_PROMPT = ChatPromptTemplate.from_template(
     """Tu reçois les réponses partielles de {n_docs} factures analysées individuellement.
 Synthétise ces réponses pour fournir une réponse finale complète et précise.
-Ignore les réponses "AUCUNE INFO PERTINENTE".
-Si aucune réponse partielle n'est pertinente, dis-le clairement.
+
+RÈGLES STRICTES :
+- Base-toi UNIQUEMENT sur les réponses partielles ci-dessous.
+- N'ajoute AUCUNE information absente de ces réponses.
+- Ignore les réponses "AUCUNE INFO PERTINENTE".
+- Si aucune réponse partielle n'est pertinente, dis-le clairement.
 
 Question initiale : {question}
 
 Réponses partielles :
 {map_results}
 
-Réponse finale :"""
+Réponse finale (uniquement à partir des réponses partielles) :"""
 )
 
 
@@ -312,13 +317,27 @@ def answer(question, local_retriever, global_retriever, classifier_chain, rag_ch
     relevant   = [r for r in map_results if "AUCUNE INFO PERTINENTE" not in r]
     formatted  = "\n\n".join(f"[Doc {i+1}] {r}" for i, r in enumerate(relevant))
 
-    t = time.perf_counter()
-    result = reduce_chain.invoke({
+    prompt_chars = len(formatted) + len(question)
+    print(f"  Reduce — contexte : {len(relevant)} réponses MAP, ~{prompt_chars} caractères")
+
+    t_start = time.perf_counter()
+    t_first = None
+    chunks  = []
+
+    for chunk in reduce_chain.stream({
         "question":    question,
         "map_results": formatted,
         "n_docs":      len(retrieved),
-    })
-    print(f"  Reduce : {time.perf_counter() - t:.2f}s")
+    }):
+        if t_first is None:
+            t_first = time.perf_counter()
+            print(f"  Reduce TTFT        : {t_first - t_start:.2f}s")
+        chunks.append(chunk)
+
+    t_end  = time.perf_counter()
+    result = "".join(chunks)
+    print(f"  Reduce génération  : {t_end - t_first:.2f}s  (~{len(result.split())} mots générés)")
+    print(f"  Reduce total       : {t_end - t_start:.2f}s")
     return result
 
 
