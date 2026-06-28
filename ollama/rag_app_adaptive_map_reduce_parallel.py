@@ -26,8 +26,9 @@ from langchain_core.output_parsers import StrOutputParser
 # Configuration
 # ---------------------------------------------------------------------------
 OLLAMA_BASE_URL    = "http://localhost:11434/v1"
-OLLAMA_MODEL       = "gemma4:latest"
-CLASSIFIER_MODEL   = "gemma3:1b"      # modèle léger dédié au routing LOCAL/GLOBAL
+OLLAMA_MODEL       = "gemma4:latest"   # reduce + rag local
+CLASSIFIER_MODEL   = "gemma3:4b"       # routing LOCAL/GLOBAL
+MAP_MODEL          = "gemma3:4b"       # extraction factuelle pendant le map
 EMBEDDING_MODEL    = "sentence-transformers/all-MiniLM-L6-v2"
 DOCS_DIR           = Path("../LMStudio/data/invoices")
 CHROMA_DIR         = Path("data/chroma_db_mapreduce")
@@ -246,21 +247,21 @@ def build_retrievers(vectorstore, summary_chunks):
 
 def build_chains(vectorstore):
     classifier_llm = ChatOpenAI(
-        base_url=OLLAMA_BASE_URL,
-        api_key="ollama",
-        model=CLASSIFIER_MODEL,
-        temperature=0.0,
+        base_url=OLLAMA_BASE_URL, api_key="ollama",
+        model=CLASSIFIER_MODEL, temperature=0.0,
     )
-    llm = ChatOpenAI(
-        base_url=OLLAMA_BASE_URL,
-        api_key="ollama",
-        model=OLLAMA_MODEL,
-        temperature=0.0,
+    map_llm = ChatOpenAI(
+        base_url=OLLAMA_BASE_URL, api_key="ollama",
+        model=MAP_MODEL, temperature=0.0,
+    )
+    reduce_llm = ChatOpenAI(
+        base_url=OLLAMA_BASE_URL, api_key="ollama",
+        model=OLLAMA_MODEL, temperature=0.0,
     )
     classifier_chain = CLASSIFIER_PROMPT | classifier_llm | StrOutputParser()
-    rag_chain        = RAG_PROMPT        | llm | StrOutputParser()
-    map_chain        = MAP_PROMPT        | llm | StrOutputParser()
-    reduce_chain     = REDUCE_PROMPT     | llm | StrOutputParser()
+    rag_chain        = RAG_PROMPT        | reduce_llm     | StrOutputParser()
+    map_chain        = MAP_PROMPT        | map_llm        | StrOutputParser()
+    reduce_chain     = REDUCE_PROMPT     | reduce_llm     | StrOutputParser()
     return classifier_chain, rag_chain, map_chain, reduce_chain
 
 
@@ -274,18 +275,21 @@ def classify(question, classifier_chain):
 
 async def _run_map_parallel(question, docs, map_chain):
     sem = asyncio.Semaphore(MAX_CONCURRENT)
+    t0 = time.perf_counter()
 
-    async def map_one(doc):
+    async def map_one(doc, idx):
         async with sem:
-            return await map_chain.ainvoke({
+            t = time.perf_counter()
+            result = await map_chain.ainvoke({
                 "document": doc.page_content,
                 "question": question,
             })
+            print(f"    doc[{idx+1:02d}] terminé à +{time.perf_counter()-t0:.2f}s (durée : {time.perf_counter()-t:.2f}s)")
+            return result
 
-    print(f"  Map ({len(docs)} docs, concurrence={MAX_CONCURRENT})...", end="", flush=True)
-    t = time.perf_counter()
-    results = await asyncio.gather(*[map_one(doc) for doc in docs])
-    print(f" {time.perf_counter() - t:.2f}s")
+    print(f"  Map ({len(docs)} docs, concurrence={MAX_CONCURRENT})...")
+    results = await asyncio.gather(*[map_one(doc, i) for i, doc in enumerate(docs)])
+    print(f"  Map total : {time.perf_counter() - t0:.2f}s")
     return list(results)
 
 
