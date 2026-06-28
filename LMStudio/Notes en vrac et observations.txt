@@ -1,0 +1,40 @@
+Les méthodes de chunking permettent de faire une grande différence si tous les documents sont les memes.
+
+On peut paralléliser les requêtes en fonction des perfs du GPU (à limit tester)
+
+Les chunks résumés marchent bien aussi lorsque l'on sait exactement quoi attendre des questions du user
+Si on ne sait pas tout ce qu'il peut demander, alors il faut des méthodes plus intelligentes.
+
+J'ai besoin de trouver de nouveaux cas de test.Plus ils sont varié en diffuclté de récupération,
+meiux je pourrai mettre en place les garde-fous nécessaires à un RAG en prod.
+
+LM Studio limite lorsque l'on veut paralléliser les requêtes. Ce qui nous force à utiliser des chunks résumés.
+Ce n'est pas un problème quand, encore une fois, on connaît les type de réponses probables.
+
+
+
+Performances:
+Pour l'instant avec gemma 12b, les questions simples sont répondues en 10s.
+
+Axes d'amélioration : 
+* chunking
+* Modèle plus rapide
+* Meilleur algo de recherche dans touys les fichiers (le map reduce est 10 fois plus lent qu'une requête simple)
+
+
+
+L'un des gros challenges est de faire en sorte que le syqtème parvienne à dire lorsqu'il ne sait pas.
+C'est toujours plus dur de savoir ce qu'on ignore, que de ne pas retrouver ce que l'on sait déjà. 
+Autrerment dit, on ne sait pas ce que l'on ne sait pas.
+
+
+
+
+Des chunks 3* plus gros  ->  un temps de recupération qui fait  +50%  (1 seule mesure avec du stuffing)
+
+
+100k tokens c'est 8h de conversation non-stop
+Donc 1M de fenêtre de contexte, c'est pas loin de 4 jours de discussion
+Mais on observe des chutes de pertinence bien avant 10% de la fenetre de contexte.
+Donc enfait en nb de tokens utiles on a 8h de conv.
+

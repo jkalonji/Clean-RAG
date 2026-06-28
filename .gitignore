@@ -1,5 +1,6 @@
-# Vectorstore généré localement (recréé au premier lancement)
+# Vectorstores générés localement (recréés au premier lancement)
 data/chroma_db/
+**/data/chroma_db*/
 
 # Python
 __pycache__/
