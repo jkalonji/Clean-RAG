@@ -250,18 +250,23 @@ def build_retrievers(vectorstore, summary_chunks):
     return local_retriever, global_retriever
 
 
-def build_chains(vectorstore):
+def build_chains(
+    vectorstore,
+    model=OLLAMA_MODEL,
+    map_model=MAP_MODEL,
+    classifier_model=CLASSIFIER_MODEL,
+):
     classifier_llm = ChatOpenAI(
         base_url=OLLAMA_BASE_URL, api_key="ollama",
-        model=CLASSIFIER_MODEL, temperature=0.0,
+        model=classifier_model, temperature=0.0,
     )
     map_llm = ChatOpenAI(
         base_url=OLLAMA_BASE_URL, api_key="ollama",
-        model=MAP_MODEL, temperature=0.0,
+        model=map_model, temperature=0.0,
     )
     reduce_llm = ChatOpenAI(
         base_url=OLLAMA_BASE_URL, api_key="ollama",
-        model=OLLAMA_MODEL, temperature=0.0,
+        model=model, temperature=0.0,
     )
     classifier_chain = CLASSIFIER_PROMPT | classifier_llm | StrOutputParser()
     rag_chain        = RAG_PROMPT        | reduce_llm     | StrOutputParser()
@@ -298,31 +303,49 @@ async def _run_map_parallel(question, docs, map_chain):
     return list(results)
 
 
-@timeit
 def answer(question, local_retriever, global_retriever, classifier_chain, rag_chain, map_chain, reduce_chain):
+    t_total = time.perf_counter()
+    perf = {}
+
+    t0    = time.perf_counter()
     route = classify(question, classifier_chain)
+    perf["latency_classify"] = round(time.perf_counter() - t0, 3)
     print(f"  [ROUTE → {route}]")
 
     if route == "LOCAL":
+        t0        = time.perf_counter()
         retrieved = local_retriever.invoke(question)
-        context   = "\n\n---\n\n".join(d.page_content for d in retrieved)
-        return rag_chain.invoke({"context": context, "question": question})
+        perf["latency_retrieve"] = round(time.perf_counter() - t0, 3)
+        perf["n_docs"]           = len(retrieved)
+        perf["route"]            = "LOCAL"
+
+        context = "\n\n---\n\n".join(d.page_content for d in retrieved)
+        result  = rag_chain.invoke({"context": context, "question": question})
+
+        perf["latency_total"] = round(time.perf_counter() - t_total, 3)
+        print(f"  [answer] durée : {perf['latency_total']:.2f}s")
+        return result, perf
 
     # GLOBAL : retrieval hybride + map-reduce parallèle
+    t0        = time.perf_counter()
     retrieved = global_retriever(question)
+    perf["latency_retrieve"] = round(time.perf_counter() - t0, 3)
+    perf["n_docs"]           = len(retrieved)
+    perf["route"]            = "GLOBAL"
     print(f"  Docs récupérés (hybride BM25+cosine) : {len(retrieved)}")
 
+    t0          = time.perf_counter()
     map_results = asyncio.run(_run_map_parallel(question, retrieved, map_chain))
+    perf["latency_map"] = round(time.perf_counter() - t0, 3)
 
-    relevant   = [r for r in map_results if "AUCUNE INFO PERTINENTE" not in r]
-    formatted  = "\n\n".join(f"[Doc {i+1}] {r}" for i, r in enumerate(relevant))
-
+    relevant     = [r for r in map_results if "AUCUNE INFO PERTINENTE" not in r]
+    formatted    = "\n\n".join(f"[Doc {i+1}] {r}" for i, r in enumerate(relevant))
     prompt_chars = len(formatted) + len(question)
     print(f"  Reduce — contexte : {len(relevant)} réponses MAP, ~{prompt_chars} caractères")
 
-    t_start = time.perf_counter()
-    t_first = None
-    chunks  = []
+    t_reduce = time.perf_counter()
+    t_first  = None
+    chunks   = []
 
     for chunk in reduce_chain.stream({
         "question":    question,
@@ -331,14 +354,19 @@ def answer(question, local_retriever, global_retriever, classifier_chain, rag_ch
     }):
         if t_first is None:
             t_first = time.perf_counter()
-            print(f"  Reduce TTFT        : {t_first - t_start:.2f}s")
+            perf["ttft"] = round(t_first - t_reduce, 3)
+            print(f"  Reduce TTFT        : {perf['ttft']:.2f}s")
         chunks.append(chunk)
 
     t_end  = time.perf_counter()
     result = "".join(chunks)
+    perf["latency_reduce"] = round(t_end - t_reduce, 3)
     print(f"  Reduce génération  : {t_end - t_first:.2f}s  (~{len(result.split())} mots générés)")
-    print(f"  Reduce total       : {t_end - t_start:.2f}s")
-    return result
+    print(f"  Reduce total       : {perf['latency_reduce']:.2f}s")
+
+    perf["latency_total"] = round(time.perf_counter() - t_total, 3)
+    print(f"  [answer] durée : {perf['latency_total']:.2f}s")
+    return result, perf
 
 
 # ---------------------------------------------------------------------------
@@ -351,7 +379,7 @@ def run_tests(local_retriever, global_retriever, classifier_chain, rag_chain, ma
     for i, question in enumerate(TEST_QUESTIONS, 1):
         print(f"\n[Q{i}] {question}")
         print("-" * 60)
-        result = answer(
+        result, perf = answer(
             question,
             local_retriever, global_retriever,
             classifier_chain, rag_chain, map_chain, reduce_chain,

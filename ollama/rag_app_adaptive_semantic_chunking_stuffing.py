@@ -184,11 +184,11 @@ def build_vectorstore(docs):
     return vectorstore
 
 
-def build_chains(vectorstore):
+def build_chains(vectorstore, model=OLLAMA_MODEL):
     llm = ChatOpenAI(
         base_url=OLLAMA_BASE_URL,
         api_key="ollama",
-        model=OLLAMA_MODEL,
+        model=model,
         temperature=0.0,
     )
     classifier_chain = CLASSIFIER_PROMPT | llm | StrOutputParser()
@@ -206,18 +206,39 @@ def classify(question, classifier_chain):
     return "LOCAL" if "LOCAL" in raw else "GLOBAL"
 
 
-@timeit
 def answer(question, summary_chunks, classifier_chain, retriever, rag_chain, stuffing_chain):
+    t_total = time.perf_counter()
+    perf = {}
+
+    t0    = time.perf_counter()
     route = classify(question, classifier_chain)
+    perf["latency_classify"] = round(time.perf_counter() - t0, 3)
     print(f"  [ROUTE → {route}]")
 
     if route == "LOCAL":
+        t0        = time.perf_counter()
         retrieved = retriever.invoke(question)
-        context   = "\n\n---\n\n".join(d.page_content for d in retrieved)
-        return rag_chain.invoke({"context": context, "question": question})
+        perf["latency_retrieve"] = round(time.perf_counter() - t0, 3)
+        perf["n_docs"]           = len(retrieved)
+        perf["route"]            = "LOCAL"
 
+        context = "\n\n---\n\n".join(d.page_content for d in retrieved)
+        result  = rag_chain.invoke({"context": context, "question": question})
+
+        perf["latency_total"] = round(time.perf_counter() - t_total, 3)
+        print(f"  [answer] durée : {perf['latency_total']:.2f}s")
+        return result, perf
+
+    t0      = time.perf_counter()
     context = "\n\n---\n\n".join(c.page_content for c in summary_chunks)
-    return stuffing_chain.invoke({"context": context, "question": question})
+    result  = stuffing_chain.invoke({"context": context, "question": question})
+    perf["latency_retrieve"] = 0.0
+    perf["n_docs"]           = len(summary_chunks)
+    perf["route"]            = "GLOBAL"
+
+    perf["latency_total"] = round(time.perf_counter() - t_total, 3)
+    print(f"  [answer] durée : {perf['latency_total']:.2f}s")
+    return result, perf
 
 
 # ---------------------------------------------------------------------------
@@ -230,7 +251,7 @@ def run_tests(summary_chunks, classifier_chain, retriever, rag_chain, stuffing_c
     for i, question in enumerate(TEST_QUESTIONS, 1):
         print(f"\n[Q{i}] {question}")
         print("-" * 60)
-        result = answer(question, summary_chunks, classifier_chain, retriever, rag_chain, stuffing_chain)
+        result, perf = answer(question, summary_chunks, classifier_chain, retriever, rag_chain, stuffing_chain)
         print(f"[R{i}] {result}")
     print("\n" + "=" * 70)
 

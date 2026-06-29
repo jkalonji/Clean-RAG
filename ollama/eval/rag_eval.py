@@ -9,7 +9,6 @@ Métriques : faithfulness, answer_relevancy, context_precision, context_recall
 import json
 import os
 import sys
-import time
 from datetime import datetime
 from pathlib import Path
 
@@ -57,8 +56,7 @@ def collect_rag_result(
 ):
     """
     Appelle le RAG pour une question.
-    - classify + retrieve avant answer() pour capturer les contextes (RAGAS)
-    - latency = durée de answer() seul (pipeline complet)
+    classify + retrieve avant answer() pour capturer les contextes (RAGAS).
     """
     route = classify(question, classifier_chain)
     docs  = (
@@ -67,19 +65,18 @@ def collect_rag_result(
         else global_retriever(question)
     )
 
-    t0      = time.perf_counter()
-    result  = answer(
+    result, perf = answer(
         question,
         local_retriever, global_retriever,
         classifier_chain, rag_chain, map_chain, reduce_chain,
     )
-    latency = time.perf_counter() - t0
 
     return {
-        "route":    route,
+        "route":    perf["route"],
         "contexts": [d.page_content for d in docs],
         "answer":   result,
-        "latency":  round(latency, 2),
+        "latency":  perf["latency_total"],
+        "perf":     perf,
     }
 
 
