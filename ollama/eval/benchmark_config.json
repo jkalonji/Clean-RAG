@@ -9,13 +9,13 @@
   "runs": [
     {"pipeline": "stuffing",   "model": "gemma3:1b"},
     {"pipeline": "stuffing",   "model": "gemma3:4b"},
-    {"pipeline": "stuffing",   "model": "qwen2.5:2b"},
-    {"pipeline": "stuffing",   "model": "qwen2.5:4b"},
+    {"pipeline": "stuffing",   "model": "qwen2.5:3b"},
+    {"pipeline": "stuffing",   "model": "qwen3:4b"},
     {"pipeline": "stuffing",   "model": "granite3.1-dense:2b"},
     {"pipeline": "stuffing",   "model": "granite3.1-dense:8b"},
     {"pipeline": "map_reduce", "model": "gemma3:4b"},
     {"pipeline": "map_reduce", "model": "gemma4:latest"},
-    {"pipeline": "map_reduce", "model": "qwen2.5:4b"},
+    {"pipeline": "map_reduce", "model": "qwen3:4b"},
     {"pipeline": "map_reduce", "model": "granite3.1-dense:8b"}
   ]
 }
