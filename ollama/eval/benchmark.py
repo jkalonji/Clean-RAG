@@ -17,6 +17,8 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
+import requests
+
 os.chdir(Path(__file__).parent.parent)
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
@@ -48,6 +50,19 @@ EVAL_DIR        = Path(__file__).parent.resolve()
 GROUND_TRUTH_F  = EVAL_DIR / "ground_truth.json"
 CONFIG_F        = EVAL_DIR / "benchmark_config.json"
 RESULTS_DIR     = EVAL_DIR / "results"
+
+
+def _unload_model(model: str) -> None:
+    """Libère le modèle de la VRAM Ollama (keep_alive=0) pour éviter la saturation."""
+    try:
+        requests.post(
+            "http://localhost:11434/api/generate",
+            json={"model": model, "keep_alive": 0},
+            timeout=30,
+        )
+        print(f"  [mem] '{model}' libéré de la VRAM")
+    except Exception as e:
+        print(f"  [mem] avertissement : impossible de libérer '{model}' : {e}")
 
 
 # ---------------------------------------------------------------------------
@@ -214,11 +229,14 @@ def print_decision_matrix(summary_rows, thresholds):
         tag = "★" if q >= q_good else ("✓" if q >= q_ok else "~")
         print(f"  {tag} Qualité max                  → {best_quality['pipeline']} + {best_quality['model']}  (qualité: {q:.2f}, lat: {best_quality['lat_avg']:.1f}s)")
 
-    # Par type de question
-    local_best  = max(summary_rows, key=lambda r: r["lat_local"]  if r["lat_local"]  else 999, default=None)
-    global_best = max(summary_rows, key=lambda r: r["lat_global"] if r["lat_global"] else 999, default=None)
+    # Par type de question — minimum de latence parmi les runs de bonne qualité
+    good_quality = [r for r in summary_rows if quality(r) >= q_ok] or summary_rows
+    local_best  = min((r for r in good_quality if r["lat_local"]  is not None), key=lambda r: r["lat_local"],  default=None)
+    global_best = min((r for r in good_quality if r["lat_global"] is not None), key=lambda r: r["lat_global"], default=None)
     if local_best:
-        print(f"\n  Questions LOCAL uniquement     → meilleure latence : {local_best['pipeline']} + {local_best['model']} ({local_best['lat_local']:.1f}s)")
+        print(f"\n  Questions LOCAL uniquement     → {local_best['pipeline']} + {local_best['model']} ({local_best['lat_local']:.1f}s, qualité: {quality(local_best):.2f})")
+    if global_best:
+        print(f"  Questions GLOBAL uniquement    → {global_best['pipeline']} + {global_best['model']} ({global_best['lat_global']:.1f}s, qualité: {quality(global_best):.2f})")
     print("-" * 60)
 
 
@@ -255,8 +273,14 @@ def main():
 
         run_results = run_one(pipeline, model, ground_truth, docs, vectorstore, summary_chunks)
 
+        # Libère le modèle de la VRAM avant de charger le juge RAGAS (évite saturation GPU)
+        _unload_model(model)
+
         print(f"\nÉvaluation RAGAS [{pipeline} / {model}]...")
         scores_df = ragas_eval(ground_truth, run_results, judge_model, EMBEDDING_MODEL)
+
+        # Libère le juge avant le prochain run
+        _unload_model(judge_model)
 
         # Agrégation des métriques perf par route
         lats_local  = [r["perf"]["latency_total"] for r in run_results if r["perf"].get("route") == "LOCAL"]
