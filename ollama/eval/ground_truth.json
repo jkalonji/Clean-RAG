@@ -1,0 +1,27 @@
+[
+  {
+    "question": "Quel est le montant total TTC de la facture de Thomas Lefebvre ?",
+    "ground_truth": "Le montant total TTC de la facture de Thomas Lefebvre est de 348,00 €.",
+    "relevant_docs": ["facture_001.txt"]
+  },
+  {
+    "question": "Quels services ont été facturés au cabinet médical des Trois Fontaines ?",
+    "ground_truth": "Les services facturés au cabinet médical des Trois Fontaines sont : audit de sécurité des systèmes (2 jours), chiffrement des bases de données patients, mise en place d'un VPN sécurisé inter-sites, formation RGPD équipe (3 personnes, 3h), rédaction de la politique de confidentialité, installation antivirus pro (3 licences). Total TTC : 5 004,00 €.",
+    "relevant_docs": ["facture_007.txt"]
+  },
+  {
+    "question": "Quelle est la facture la plus élevée et à quel client correspond-elle ?",
+    "ground_truth": "La facture la plus élevée est celle de l'ÉCOLE PRIVÉE SAINT-EXUPÉRY, d'un montant de 27 240,00 € TTC (facture_010). Elle concerne le renouvellement du parc informatique et de l'infrastructure réseau.",
+    "relevant_docs": ["facture_010.txt"]
+  },
+  {
+    "question": "Quels clients ont bénéficié d'une formation informatique ?",
+    "ground_truth": "Cinq clients ont bénéficié d'une formation informatique : M. Karim Benzara (formation bureautique et cybersécurité), Mme Isabelle Morand (formation utilisation CMS), le CABINET MÉDICAL DES TROIS FONTAINES (formation RGPD équipe), la BOULANGERIE DUPAIN & FILS SARL (formation personnel) et l'ÉCOLE PRIVÉE SAINT-EXUPÉRY (formation équipe pédagogique).",
+    "relevant_docs": ["facture_005.txt", "facture_002.txt", "facture_007.txt", "facture_008.txt", "facture_010.txt"]
+  },
+  {
+    "question": "Quel est le mode de paiement utilisé par la boulangerie Dupain ?",
+    "ground_truth": "Le mode de paiement utilisé par la BOULANGERIE DUPAIN & FILS SARL est le virement bancaire.",
+    "relevant_docs": ["facture_008.txt"]
+  }
+]

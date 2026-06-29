@@ -2,6 +2,9 @@
 data/chroma_db/
 **/data/chroma_db*/
 
+# Résultats d'évaluation RAG (runs locaux)
+**/eval/results/
+
 # Python
 __pycache__/
 *.py[cod]
