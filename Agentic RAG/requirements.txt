@@ -1,0 +1,9 @@
+langchain
+langchain-community
+langchain-openai
+langchain-groq
+langchain-chroma
+langchain-text-splitters
+chromadb
+sentence-transformers
+duckduckgo-search
